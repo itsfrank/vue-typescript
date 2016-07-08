@@ -38,8 +38,8 @@ By default, the tag will be the snake-case version of the class name, and option
 ##### @Prop
 There are 2 ways to call it:
     
-&nbsp;&nbsp;&nbsp;&nbsp;**@Prop**  
-&nbsp;&nbsp;&nbsp;&nbsp;**@Prop(options:PropOption)**  
+&nbsp;&nbsp;&nbsp;&nbsp;`@Prop`  
+&nbsp;&nbsp;&nbsp;&nbsp;`@Prop(options:PropOption)`  
 
 &nbsp;&nbsp;&nbsp;&nbsp; options - the same object as the one you would use defining a prop  
 
