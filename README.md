@@ -23,7 +23,7 @@ npm install --save vue-typescript
 
 **See planned features below for other decorators that are in the works
 # Usage
-#### @VueComponent
+###### @VueComponent
 There are 4 ways to call it:
     
 &nbsp;&nbsp;&nbsp;&nbsp;**@VueComponent**  
@@ -35,7 +35,7 @@ There are 4 ways to call it:
 
 By default, the tag will be the snake-case version of the class name, and options will be an empty object { } 
 
-#### @Prop
+###### @Prop
 There are 2 ways to call it:
     
 &nbsp;&nbsp;&nbsp;&nbsp;**@Prop**  
@@ -135,7 +135,7 @@ Vue.component('dope-tag', {
         }
     },
     ready() {
-        this.lookAtMe = 'I've changed');
+        this.lookAtMe = 'I've changed';
     }
 })
 ```
@@ -167,6 +167,9 @@ router.map({
 
 router.start(app, '#my-app');
 ```
+
+#### Note on using `new` with component classes
+Calling something like `new MyComponent()` will actually not construct a new component, neither will it re-register it with vue. All components are registered at load time, calling new on the class is equivalent to getting a reference to the return of `Vue.component('my-component', {...})`, this function is only evaluated once, and the retuern is stored internally by vue-typescript. This is why in the vue-router example, we need to put `new` in front of our class.
 
 # Planned Features
 - **@Watch** - a function decorator that will take as parameter the watched variable's name and add the function to the watch object
