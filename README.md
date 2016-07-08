@@ -23,7 +23,7 @@ npm install --save vue-typescript
 
 **See planned features below for other decorators that are in the works
 # Usage
-###### @VueComponent
+##### @VueComponent
 There are 4 ways to call it:
     
 &nbsp;&nbsp;&nbsp;&nbsp;**@VueComponent**  
@@ -35,7 +35,7 @@ There are 4 ways to call it:
 
 By default, the tag will be the snake-case version of the class name, and options will be an empty object { } 
 
-###### @Prop
+##### @Prop
 There are 2 ways to call it:
     
 &nbsp;&nbsp;&nbsp;&nbsp;**@Prop**  
@@ -91,7 +91,7 @@ Vue.component('my-component', {
         }
     },
     methods: {
-        doStuff = function(){
+        doStuff: function(){
             console.log('I did stuff');
         }
     }
