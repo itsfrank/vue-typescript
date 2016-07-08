@@ -1,0 +1,50 @@
+complete:
+    Prop:
+        type: variable decorator
+        description: missing
+        usages:
+            - '@prop'
+            - '@prop(options: vuejs.PropOption)'
+        params:
+            options:
+                type: vuejs.PropOption
+                description: "Same object that would be used in standard Vue prop declaration. This object will be added to the props property in the options object provided by the @VueComponent decorator"
+        issues: none
+in_progress:
+    VueComponent:
+        type: class decorator
+        description: missing
+        usages: 
+            - '@VueComponent()'
+            - '@VueComponent(element:string)'
+            - '@VueComponent(options:vuejs.ComponentOption)'
+            - '@VueComponent(element:string, options:vuejs.ComponentOption)'
+        params:
+            element:
+                type: string
+                description: "Analogous to the 'el' property, defines the component tag to be replaced by vue. If it is not provided, the class name will be transformed to snake case, ex: MyComponent -> my-component"
+            options:
+                type: vuejs.ComponentOption
+                description: "Same object that would be used in standard Vue component declaration. This can be used to access all Vue features event if they arent yet implemented by vue-typescript. For properties defined both in the options object and in the class, the object property will be overwritten by the class property."
+        issues: 
+            - 
+                description: "Missing alternate usages"
+                priority: high
+missing:
+    Method:
+        type: function decorator
+        description: "Apply to a functions to explicitly add it to the 'methods' object. By default all functions not defined by vue are assumed to be of this type. However, if you want to have a method that is named 'ready()' for example, apply the method decorator and it will be place in the 'methods' object"
+        priority: low
+    Hook:
+        type: function decorator
+        description: "Apply to a function that you wish to explicitley make a hook out of. This function will not be placed in the methods object, it will instead be a direct property of the object passed to the component constructor."
+        priority: low
+    Computed:
+        type: function decorator
+        description: "Functions to be added to the computed property."
+        priority: high
+    Watch:
+        type: function decorator
+        description: "Functions to be added to the watch property."
+        priority: low
+

@@ -1,0 +1,4 @@
+ --compilers ts:ts-node/register
+ --require mocha-clean
+ --recursive
+ --colors
