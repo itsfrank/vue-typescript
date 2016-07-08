@@ -51,7 +51,8 @@ By default, the prop will behave equivalently to having &nbsp;`myProp: null` &nb
 - **Variables** - unless the @Prop decorator is used, all variables in a class will be returned by the data object
 - **Functions** - all functions that do not match the name of a Vue lifecycle hook will be put in the methods object. Any function named like one of the hook (ex: 'ready()') will be added as a property of the options object and not to methods (see second example)
 - **Option Object** - the option object allows to access features that may not have been implemented yet by vue-typescript, or simply offers the option to have a hybrid vanilla vue / typescript component. However, is a property is defined in bot the options obect and the class, the class variable will overwrite the one in options. 
-- **Constructors** - Avoid defining constructors for classes that will be decorated by @VueComponent. An instance of the object is created at load time to create a vue object and register the component, if the constructor relies on parameters, there will be 'undefined' errors as these parameters will obviously not be passed.
+- **Constructors** - Avoid defining constructors for classes that will be decorated by @VueComponent. An instance of the object is created at load time to create a vue object and register the component, if the constructor relies on parameters, there will be 'undefined' errors as these parameters will obviously not be passed.  
+**see note on behaviour of new below
 
 # Examples
 
