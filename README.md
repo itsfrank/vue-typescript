@@ -91,7 +91,7 @@ Vue.component('my-component', {
         }
     },
     methods: {
-        doStuff(){
+        doStuff = function(){
             console.log('I did stuff');
         }
     }
@@ -108,12 +108,13 @@ import { VueComponent, Prop } from 'vue-typescript'
         'lookAtMe': function(old, new) {
             this.itChanged(new); 
         }
+    }
 })
 class MyDopeComponent extends Vue { //extend Vue to get intelisense on vm functions like $broadcast()
     lookAtMe:string;
 
     ready() {
-        this.lookAtMe = 'Ive changed';
+        this.lookAtMe = 'I\'ve changed';
     }
 
     itChanged(new:string) {
@@ -130,12 +131,17 @@ Vue.component('dope-tag', {
         }
     },
     methods: {
-        itChanged(new){
+        itChanged = function(new){
             this.$broadcast('New var: ' + this.lookAtMe);
         }
     },
-    ready() {
-        this.lookAtMe = 'I've changed';
+    watch: {
+        'lookAtMe': function(old, new) {
+            this.itChanged(new); 
+        }
+    },
+    ready = function() {
+        this.lookAtMe = 'I\'ve changed';
     }
 })
 ```
