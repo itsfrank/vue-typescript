@@ -4,7 +4,9 @@
   "description": "Typescript decorators to make vue js feel more typescripty",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha -w",
+    "clean": "rm -rf coverage && rm -rf dist",
+    "cover": "tsc && istanbul cover  node_modules/mocha/bin/_mocha dist/test/**/*.js && remap-istanbul -i coverage/coverage.json -o coverage/html-report -t html"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
   "homepage": "https://github.com/itsFrank/vue-typescript#readme",
   "devDependencies": {
     "chai": "^3.5.0",
+    "istanbul": "^0.4.4",
     "mocha": "^2.5.3",
     "mocha-clean": "^1.0.0",
     "ts-node": "^0.9.3",
