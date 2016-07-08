@@ -1,9 +1,9 @@
 # vue-typescript
 Typescript decorators to make vue play nice with typescript
 
-[![https://circleci.com/gh/itsFrank/vue-typescript](https://img.shields.io/circleci/project/itsFrank/vue-typescript.svg??style=flat-square)]()
-[![https://codecov.io/gh/itsFrank/vue-typescript](https://img.shields.io/codecov/c/github/itsFrank/vue-typescript/master.svg)]()
-[![https://www.npmjs.com/package/vue-typescript](https://img.shields.io/npm/v/vue-typescript.svg)]()
+[![circleci](https://img.shields.io/circleci/project/itsFrank/vue-typescript.svg??style=flat-square)](https://circleci.com/gh/itsFrank/vue-typescript)
+[![codecov](https://img.shields.io/codecov/c/github/itsFrank/vue-typescript/master.svg)](https://codecov.io/gh/itsFrank/vue-typescript)
+[![npm](https://img.shields.io/npm/v/vue-typescript.svg)](https://www.npmjs.com/package/vue-typescript)
 
 ## Why do i need this?
 I built this mostly to remove the red squiggles on VSCode, but also to make Vue work seamlessly while still writing code that feels like typescript.
