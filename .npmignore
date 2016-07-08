@@ -1,0 +1,7 @@
+dist
+coverage
+test
+typings
+README.md
+roadmap.yml
+tsconfig.prod.json
