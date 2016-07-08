@@ -26,10 +26,10 @@ npm install --save vue-typescript
 ##### @VueComponent
 There are 4 ways to call it:
     
-&nbsp;&nbsp;&nbsp;&nbsp;**@VueComponent**  
-&nbsp;&nbsp;&nbsp;&nbsp;**@VueComponent(element:string)**  
-&nbsp;&nbsp;&nbsp;&nbsp;**@VueComponent(options:ComponentOption)**  
-&nbsp;&nbsp;&nbsp;&nbsp;**@VueComponent(element:string, options:ComponentOption)**  
+&nbsp;&nbsp;&nbsp;&nbsp;`@VueComponent`  
+&nbsp;&nbsp;&nbsp;&nbsp;`@VueComponent(element:string)`  
+&nbsp;&nbsp;&nbsp;&nbsp;`@VueComponent(options:ComponentOption)`  
+&nbsp;&nbsp;&nbsp;&nbsp;`@VueComponent(element:string, options:ComponentOption)`  
 &nbsp;&nbsp;&nbsp;&nbsp; element - string to use as html tag  
 &nbsp;&nbsp;&nbsp;&nbsp; options - the same object as the one you would use when calling Vue.component  
 
