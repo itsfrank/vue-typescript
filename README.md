@@ -23,25 +23,25 @@ npm install --save vue-typescript
 
 **See planned features below for other decorators that are in the works
 # Usage
-### **@VueComponent**
+### @VueComponent
 There are 4 ways to call it:
     
-&nbsp;&nbsp;&nbsp;&nbsp;**@VueComponent**\
-&nbsp;&nbsp;&nbsp;&nbsp;**@VueComponent(element:string)**\
-&nbsp;&nbsp;&nbsp;&nbsp;**@VueComponent(options:ComponentOption)**\
-&nbsp;&nbsp;&nbsp;&nbsp;**@VueComponent(element:string, options:ComponentOption)**\
-&nbsp;&nbsp;&nbsp;&nbsp; element - string to use as html tag\
-&nbsp;&nbsp;&nbsp;&nbsp; options - the same object as the one you would use when calling Vue.component\
+&nbsp;&nbsp;&nbsp;&nbsp;**@VueComponent**  
+&nbsp;&nbsp;&nbsp;&nbsp;**@VueComponent(element:string)**  
+&nbsp;&nbsp;&nbsp;&nbsp;**@VueComponent(options:ComponentOption)**  
+&nbsp;&nbsp;&nbsp;&nbsp;**@VueComponent(element:string, options:ComponentOption)**  
+&nbsp;&nbsp;&nbsp;&nbsp; element - string to use as html tag  
+&nbsp;&nbsp;&nbsp;&nbsp; options - the same object as the one you would use when calling Vue.component  
 
 By default, the tag will be the snake-case version of the class name, and options will be an empty object {} 
 
-### **@Prop**
+### @Prop
 There are 2 ways to call it:
     
-&nbsp;&nbsp;&nbsp;&nbsp;**@Prop**\
-&nbsp;&nbsp;&nbsp;&nbsp;**@Prop(options:PropOption)**\
+&nbsp;&nbsp;&nbsp;&nbsp;**@Prop**  
+&nbsp;&nbsp;&nbsp;&nbsp;**@Prop(options:PropOption)**  
 
-&nbsp;&nbsp;&nbsp;&nbsp; options - the same object as the one you would use defining a prop\
+&nbsp;&nbsp;&nbsp;&nbsp; options - the same object as the one you would use defining a prop  
 
 By default, the prop will behave as the equivalently to &nbsp;`myProp: null`
 
@@ -135,7 +135,7 @@ Vue.component('dope-tag', {
         }
     },
     ready() {
-        this.lookAtMe = 'I've changed';
+        this.lookAtMe = 'I've changed');
     }
 })
 ```
