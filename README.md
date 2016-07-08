@@ -131,7 +131,7 @@ Vue.component('dope-tag', {
         }
     },
     methods: {
-        itChanged = function(new){
+        itChanged: function(new){
             this.$broadcast('New var: ' + this.lookAtMe);
         }
     },
@@ -140,7 +140,7 @@ Vue.component('dope-tag', {
             this.itChanged(new); 
         }
     },
-    ready = function() {
+    ready: function() {
         this.lookAtMe = 'I\'ve changed';
     }
 })
