@@ -4,7 +4,8 @@
   "description": "Typescript decorators to make vue js feel more typescripty",
   "main": "index.ts",
   "scripts": {
-    "test": "mocha -w",
+    "test": "mocha",
+    "dev": "mocha -w",
     "build": "tsc -p tsconfig.prod.json",
     "postinstall": "typings install --production",
     "clean": "rm -rf coverage && rm -rf dist",
