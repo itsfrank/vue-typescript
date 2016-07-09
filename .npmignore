@@ -2,12 +2,9 @@ built
 coverage
 test
 typings
-typings.json
 README.md
 roadmap.yml
 logs
 *.log
 npm-debug.log*
 *.tgz
-tsconfig.json
-tsconfig.build.json
