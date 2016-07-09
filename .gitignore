@@ -8,3 +8,6 @@ node_modules
 
 #Coverage
 coverage
+typings
+dist
+tsconfig.prod.ts

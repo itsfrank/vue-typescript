@@ -9,8 +9,10 @@ complete:
             options:
                 type: vuejs.PropOption
                 description: "Same object that would be used in standard Vue prop declaration. This object will be added to the props property in the options object provided by the @VueComponent decorator"
-        issues: none
-in_progress:
+        issues: 
+            -
+                description: "Not tested"
+                priority: "High"
     VueComponent:
         type: class decorator
         description: missing
@@ -28,8 +30,9 @@ in_progress:
                 description: "Same object that would be used in standard Vue component declaration. This can be used to access all Vue features event if they arent yet implemented by vue-typescript. For properties defined both in the options object and in the class, the object property will be overwritten by the class property."
         issues: 
             - 
-                description: "Missing alternate usages"
+                description: "Props are added to data"
                 priority: high
+in_progress: none
 missing:
     Method:
         type: function decorator

@@ -1,13 +1,13 @@
 {
   "name": "vue-typescript",
   "version": "0.1.1",
-  "description": "Typescript decorators to make vue js feel more typescripty",
+  "description": "Typescript decorators to make vue play nice with typescript",
   "main": "index.ts",
   "scripts": {
     "test": "mocha",
     "dev": "mocha -w",
     "build": "tsc -p tsconfig.prod.json",
-    "postinstall": "typings install --production",
+    "postinstall": "typings install",
     "clean": "rm -rf coverage && rm -rf dist",
     "cover": "tsc && istanbul cover  node_modules/mocha/bin/_mocha dist/test/**/*.js && remap-istanbul -i coverage/coverage.json -o coverage/html-report -t html"
   },
