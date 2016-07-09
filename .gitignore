@@ -10,4 +10,4 @@ node_modules
 coverage
 typings
 dist
-tsconfig.prod.ts
+tsconfig.prod.json
