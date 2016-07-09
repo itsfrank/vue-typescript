@@ -21,7 +21,6 @@ describe('Prop', function(){
         template: '<p>hello</p>'
     })
     class PropTest {
-
         @Prop
         simple_prop:string;
 
@@ -31,9 +30,7 @@ describe('Prop', function(){
             required: true
         })
         option_prop:string
-
     }
-
 
     it('should have a simple prop', function(){
         var component = Utils.component('prop-test');
