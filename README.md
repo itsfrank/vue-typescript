@@ -6,6 +6,7 @@ Typescript decorators to make vue play nice with typescript
 [![npm](https://img.shields.io/npm/v/vue-typescript.svg)](https://www.npmjs.com/package/vue-typescript)
 [![npm](https://img.shields.io/npm/dt/vue-typescript.svg)](https://www.npmjs.com/package/vue-typescript)
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/itsFrank/vue-typescript.svg?style=social&label=Star)](https://github.com/itsFrank/vue-typescript)
 
 ## Why do i need this?
 I built this mostly to remove the red squiggles on VSCode, but also to make Vue work seamlessly while still writing code that feels like typescript.
@@ -183,3 +184,7 @@ Calling something like `new MyComponent()` will actually not construct a new com
 # Planned Features
 - **@Watch** - a function decorator that will take as parameter the watched variable's name and add the function to the watch object
 - **@Computed** - a function decorator that will add the function to the computed object instead of the method object
+
+# Hacking It
+Although its never recomended to make changes inside node_modules, if you find a bug that prevents you from moving forward and need to fix it ASAP. Just cd to the module directory, run `typings install --production` (this will ommit the mocha, chai, and node typings). Then make your fix and run `npm run build`. Your IDE might throw a fit because there's no tsconfig, to fix that rename tsconfig.build.json to tsconfig.json (simply run `tsc` if you do that, the build command points tsc to the .build.json file). Depending on how tsc decides to resolve packages, you might also need to `npm install vue` locally in the vue-typescript folder as well.  
+**Don't forget to open an issue on the repo as well!**

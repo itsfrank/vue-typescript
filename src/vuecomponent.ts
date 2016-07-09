@@ -5,7 +5,7 @@ import Config from './config'
 // var className: string = this.constructor.toString().match(/\w+/g)[1];
 export function VueComponent(element:string)
 export function VueComponent(options:vuejs.ComponentOption)
-export function VueComponent(element:any, options:vuejs.ComponentOption)
+export function VueComponent(element:string, options:vuejs.ComponentOption)
 export function VueComponent(first:any, options?:vuejs.ComponentOption) {
     var type = typeof first;
         if (type == 'function') { //No param decorator, called at construction
@@ -48,12 +48,12 @@ function createDecorator(name?:string, options?:vuejs.ComponentOption){
             }
         } else options.data = {};
         if (!options.methods) options.methods = {};
-
+        if (options['style']) delete options['style'];
+        
         var newi = construct(original, {});
         
         for(var key in newi){
             if (key.charAt(0) != '$' && key.charAt(0) != '_'){
-                if (key == 'style' && typeof(newi[key] == 'string')) continue;
                 if (typeof(newi[key]) == 'function'){
                     if (Config.vueInstanceFunctions.indexOf(key) > -1){
                         options[key] = newi[key]

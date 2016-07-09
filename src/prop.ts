@@ -1,11 +1,13 @@
-export function Prop(target:any, key:any): any; //Default
-export function Prop(options: vuejs.PropOption): any; //With options
-export function Prop(...params:any[]): any {
-    if (params.length == 1){
+
+
+export function Prop(options: vuejs.PropOption) //With options
+export function Prop(target:Object, key:string)
+export function Prop(first:any, second?:string) {
+    if (!second){
         return function(target: any, key: string) {
-            (target.$$props || (target.$$props = {}))[key] = params[0];
+            (target.$$props || (target.$$props = {}))[key] = first;
         };
-    } else if (params.length == 3) {
-        (params[0].$$props || (params[0].$$props = {}))[params[1]] = null;
+    } else {
+        (first.$$props || (first.$$props = {}))[second] = null;
     }
 }
