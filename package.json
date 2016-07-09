@@ -2,14 +2,14 @@
   "name": "vue-typescript",
   "version": "0.1.1",
   "description": "Typescript decorators to make vue play nice with typescript",
-  "main": "index.ts",
+  "main": "lib/index.js",
   "scripts": {
     "test": "mocha",
     "dev": "mocha -w",
-    "build": "tsc -p tsconfig.prod.json",
+    "build": "tsc -p tsconfig.build.json",
     "postinstall": "typings install",
-    "clean": "rm -rf coverage && rm -rf dist",
-    "cover": "tsc && istanbul cover  node_modules/mocha/bin/_mocha dist/test/**/*.js && remap-istanbul -i coverage/coverage.json -o coverage/html-report -t html"
+    "clean": "rm -rf coverage && rm -rf dist && rm -rf lib",
+    "cover": "tsc && istanbul cover  node_modules/mocha/bin/_mocha built/test/**/*.js && remap-istanbul -i coverage/coverage.json -o coverage/html-report -t html"
   },
   "repository": {
     "type": "git",
@@ -37,5 +37,6 @@
   },
   "peerDependencies": {
     "vue": "^1.0.26"
-  }
+  },
+  "typings": "lib/index"
 }

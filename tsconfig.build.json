@@ -6,9 +6,11 @@
       "sourceMap": true,
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
-      "outDir": "built"
+      "declaration": true,
+      "outDir": "lib"
     },
-    "exclude": [
-      "node_modules"
+    "files": [
+      "src/index.ts",
+      "typings/index.d.ts"
     ]
 }

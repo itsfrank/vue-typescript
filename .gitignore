@@ -1,13 +1,11 @@
-# Logs
 logs
 *.log
 npm-debug.log*
 
-# Dependency directories
 node_modules
 
-#Coverage
 coverage
 typings
 dist
-tsconfig.prod.json
+built
+*.tgz
