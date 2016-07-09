@@ -4,11 +4,11 @@
   "description": "Typescript decorators to make vue play nice with typescript",
   "main": "lib/index.js",
   "scripts": {
+    "prepublish": "npm run clean && npm run build",
     "test": "mocha",
     "dev": "mocha -w",
     "build": "tsc -p tsconfig.build.json",
-    "postinstall": "typings install",
-    "clean": "rm -rf coverage && rm -rf dist && rm -rf lib",
+    "clean": "rm -rf coverage && rm -rf built && rm -rf lib",
     "cover": "tsc && istanbul cover  node_modules/mocha/bin/_mocha built/test/**/*.js && remap-istanbul -i coverage/coverage.json -o coverage/html-report -t html"
   },
   "repository": {

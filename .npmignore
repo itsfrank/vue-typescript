@@ -4,8 +4,6 @@ test
 typings
 README.md
 roadmap.yml
-tsconfig.build.json
-
 logs
 *.log
 npm-debug.log*
