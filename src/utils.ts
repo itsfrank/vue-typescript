@@ -1,4 +1,4 @@
-class DevUtils {
+export class DevUtils {
     private globalStartTime: number;
     private decoratorStartTime:number;
     private decoratorComputedSum:number = 0;
