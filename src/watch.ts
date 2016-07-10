@@ -1,7 +1,11 @@
+import { DeveloperUtils } from './utils'
+
 export function Watch(name:string)
 export function Watch(name:string, options:WatchOption)
 export function Watch(name:string, options?:WatchOption) {
     return function(target:any, key:string) {
+        DeveloperUtils.decoratorStart();
+
         if (!target.$$watch) target.$$watch = {};
 
         var watched = target[key] ? name : key;
@@ -17,6 +21,8 @@ export function Watch(name:string, options?:WatchOption) {
         else options = handler;
 
         target.$$watch[watched] = options;
+
+        DeveloperUtils.decoratorStop();
     }
 }
 

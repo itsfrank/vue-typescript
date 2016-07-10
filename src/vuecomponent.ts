@@ -1,22 +1,27 @@
 import * as Vue from 'vue';
 
 import Config from './config'
+import { DeveloperUtils } from './utils'
 
 // var className: string = this.constructor.toString().match(/\w+/g)[1];
 export function VueComponent(element:string)
 export function VueComponent(options:vuejs.ComponentOption)
 export function VueComponent(element:string, options:vuejs.ComponentOption)
 export function VueComponent(first:any, options?:vuejs.ComponentOption) {
+    DeveloperUtils.decoratorStart();
     var type = typeof first;
         if (type == 'function') { //No param decorator, called at construction
             createDecorator(null, null)(first);
         } else if (type == 'string') { //name and options or name only
+            DeveloperUtils.decoratorStop();
             return createDecorator(first, options);
         } else if (type == 'object') { //options only
+            DeveloperUtils.decoratorStop();
             return createDecorator(null, first);
         } else {
             throw Error("First parameter of VueComponent must be a string or an object");
         }
+    DeveloperUtils.decoratorStop();
 }
 
 function camelToSnake(str:string){
@@ -42,6 +47,7 @@ function createDecorator(name?:string, options?:vuejs.ComponentOption){
         if (!options) options = {};
         if (!options.props) options.props = {};
         if (!options.watch) options.watch = {};
+        if (!options.computed) options.computed = {};
         if (options.data) {
             if (typeof options.data == 'function'){
                 var data_rtn = (<any>options).data();
@@ -55,7 +61,18 @@ function createDecorator(name?:string, options?:vuejs.ComponentOption){
 
         for(var key in newi){
             if (key.charAt(0) != '$' && key.charAt(0) != '_'){
-                if (typeof(newi[key]) == 'function'){
+                var prop_desc = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(newi), key);
+                if (prop_desc && prop_desc.get) {
+                    var computed_obj:any = {};
+                    if(prop_desc.set){
+                        computed_obj.get = prop_desc.get;
+                        computed_obj.set = prop_desc.set;
+                    } else {
+                        computed_obj = prop_desc.get;
+                    }
+                    options.computed[key] = computed_obj;
+                }
+                else if (typeof(newi[key]) == 'function'){
                     if (Config.vueInstanceFunctions.indexOf(key) > -1){
                         options[key] = newi[key]
                     } else {
