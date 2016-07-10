@@ -19,13 +19,14 @@ This package has one single peer-dependancy: Vue (obviously)
 ```
 npm install --save vue-typescript
 ```
+For the best experience you will want to use typings and `typings install --save --global dt~vue` as some decorators use these typings for input parameters. If you dont want to use them, the typed vue object will be handled as `any`.
 
 # Current Features
 - **@VueComponent** - A class decorator that registers the class as a vue component
 - **@Prop** - A variable decorator that adds a class' variables to the prop object instead of data
 - **@Watch** - A variable or function decorator that adds a property to the watch object mapping the desired function as handler
+- **Computed Properties** - to define computed properties, simply use the native typescript syntax `get` and `set` (see example below)
 
-**See planned features below for other decorators that are in the works
 # Usage
 ##### @VueComponent
 There are 4 ways to call it:
@@ -60,10 +61,10 @@ It can be applied to either a function or a variable, and for each application, 
 
 # Behaviour
 - **Variables** - unless the @Prop decorator is used, all variables in a class will be returned by the data object
-- **Functions** - all functions that do not match the name of a Vue lifecycle hook will be put in the methods object. Any function named like one of the hook (ex: 'ready()') will be added as a property of the options object and not to methods (see second example)
+- **Functions** - all functions that do not match the name of a Vue lifecycle hook, or are defined with the `get` and `set` kewywords, will be put in the methods object. Any function named like one of the hook (ex: 'ready()') will be added as a property of the options object and not to methods (see second example), while functions defined as `get/set myFunc()...` will be used to create the computed object. 
 - **Option Object** - the option object allows to access features that may not have been implemented yet by vue-typescript, or simply offers the option to have a hybrid vanilla vue / typescript component. However, is a property is defined in bot the options obect and the class, the class variable will overwrite the one in options. 
 - **Constructors** - Avoid defining constructors for classes that will be decorated by @VueComponent. An instance of the object is created at load time to create a vue object and register the component, if the constructor relies on parameters, there will be 'undefined' errors as these parameters will obviously not be passed.  
-**see note on behaviour of new below
+**see note on behaviour of `new` below
 
 # Examples
 
@@ -226,6 +227,56 @@ Vue.component('my-class', {
 })
 ```
 ***
+### Computed Properties example
+in typescript:
+```Typescript
+@VueComponent
+class ComputedStuff {
+    firstname:String = 'Jon';
+    lastname:String = 'Snowflake';
+
+    get fullname():string {
+        return this.firstname + ' ' + this.lastname;
+    }
+
+    set fullname(name:string){
+        var name_arr = name.split(' ');
+        this.firstname = name_arr[0];
+        this.lastname = name_arr[0]; //you would probably want to add checks here to prevent errors
+    }
+
+    ready(){
+        this.fullname = 'Jon Snowstorm';
+    }
+}
+```
+javascript equivalent:
+```Javascript
+Vue.component('computed-stuff', {
+    data: function(){
+        return {
+            firstname: 'Jon',
+            lastname: 'Snowflake'
+        }
+    },
+    computed: {
+        fullname: {
+            get: function(){
+                return this.firstname + ' ' + this.lastname;
+            },
+            set: function(name:string){
+                var name_arr = name.split(' ');
+                this.firstname = name_arr[0];
+                this.lastname = name_arr[0]; //you would probably want to add checks here to prevent errors
+            }
+        }
+    },
+    ready: function(){
+        this.fullname = 'Jon Snowstorm';
+    }
+})
+```
+***
 ### Integration With vue-router
 vue-typescript works perfectly with vue-router:
 ```Typescript
@@ -258,7 +309,7 @@ router.start(app, '#my-app');
 Calling something like `new MyComponent()` will actually not construct a new component, neither will it re-register it with vue. All components are registered at load time, calling new on the class is equivalent to getting a reference to the return of `Vue.component('my-component', {...})`, this function is only evaluated once, and the retuern is stored internally by vue-typescript. This is why in the vue-router example, we need to put `new` in front of our class.
 
 # Planned Features
-- **@Computed** - a function decorator that will add the function to the computed object instead of the method object
+None for the moment, I will be building a couple complete sample apps before releasing verion 1.0.0 to both provide additional documentation as well as to attempt to discover any downfalls of the library. If you have any feature requests make sure to open an issue on the repo!
 
 # Hacking It
 Although its never recomended to make changes inside node_modules, if you find a bug that prevents you from moving forward and need to fix it ASAP. Just cd to the module directory, run `typings install --production` (this will ommit the mocha, chai, and node typings). Then make your fix and run `npm run build`. Your IDE might throw a fit because there's no tsconfig, to fix that rename tsconfig.build.json to tsconfig.json (simply run `tsc` if you do that, the build command points tsc to the .build.json file). Depending on how tsc decides to resolve packages, you might also need to `npm install vue` locally in the vue-typescript folder as well.  
