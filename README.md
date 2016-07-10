@@ -2,7 +2,6 @@
 Typescript decorators to make vue play nice with typescript
 
 [![circleci](https://img.shields.io/circleci/project/itsFrank/vue-typescript.svg??style=flat-square)](https://circleci.com/gh/itsFrank/vue-typescript)
-[![codecov](https://img.shields.io/codecov/c/github/itsFrank/vue-typescript/master.svg)](https://codecov.io/gh/itsFrank/vue-typescript)
 [![npm](https://img.shields.io/npm/v/vue-typescript.svg)](https://www.npmjs.com/package/vue-typescript)
 [![npm](https://img.shields.io/npm/dt/vue-typescript.svg)](https://www.npmjs.com/package/vue-typescript)
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://opensource.org/licenses/MIT)
