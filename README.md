@@ -23,6 +23,7 @@ npm install --save vue-typescript
 # Current Features
 - **@VueComponent** - A class decorator that registers the class as a vue component
 - **@Prop** - A variable decorator that adds a class' variables to the prop object instead of data
+- **@Watch** - A variable or function decorator that adds a property to the watch object mapping the desired function as handler
 
 **See planned features below for other decorators that are in the works
 # Usage
@@ -48,7 +49,14 @@ There are 2 ways to call it:
 
 By default, the prop will behave equivalently to having &nbsp;`myProp: null` &nbsp; in the props object
 
+##### @Watch
+It can be applied to either a function or a variable, and for each application, there are 2 ways to call it:
+    
+&nbsp;&nbsp;&nbsp;&nbsp;`@Watch(name:string)`  
+&nbsp;&nbsp;&nbsp;&nbsp;`@Watch(name:string, options:WatchOption)`  
 
+&nbsp;&nbsp;&nbsp;&nbsp; name - the name of the variable to watch (if applied to a function). Or the name of the method to call when the variable changes (if applied to a variable)  
+&nbsp;&nbsp;&nbsp;&nbsp; options - the same object as the one you would use defining a property on the watch object (note that defining a handler is useless as it will get replaced in any case)  
 
 # Behaviour
 - **Variables** - unless the @Prop decorator is used, all variables in a class will be returned by the data object
@@ -146,6 +154,72 @@ Vue.component('dope-tag', {
     },
     ready: function() {
         this.lookAtMe = 'I\'ve changed';
+    }
+})
+```
+***
+### @Watch examples
+Decorator on function:
+```Typescript
+@VueComponent
+class MyClas {
+    watchMe:string = 'look at meee!';
+
+    @Watch('watchMe')
+    myFunction(new_val:string, old_val:string){
+        console.log('it was: ' + old_val);
+        console.log('now it\'s: ' + new_val);
+    }
+}
+```
+is equivalent to:
+```Javascript
+Vue.component('my-class', {
+    data: function(){
+        return {
+            watchMe: 'look at meee!'
+        }
+    },
+    watch: {
+        watchMe: function(new_val, old_val){
+            console.log('it was: ' + old_val);
+            console.log('now it\'s: ' + new_val);
+        }
+    }
+})
+```
+Decorator on variable with options:
+```Typescript
+@VueComponent
+class MyClas {
+    @Watch('myFunction', {deep: true})
+    watchMe:string = 'look at meee!';
+
+    myFunction(new_val:string, old_val:string){
+        console.log('it was: ' + old_val);
+        console.log('now it\'s: ' + new_val);
+    }
+}
+```
+is equivalent to:
+```Javascript
+Vue.component('my-class', {
+    data: function(){
+        return {
+            watchMe: 'look at meee!'
+        }
+    },
+    methods: {
+        myFunction: function(new_val, old_val){
+            console.log('it was: ' + old_val);
+            console.log('now it\'s: ' + new_val);
+        }
+    }
+    watch: {
+        watchMe: {
+            handler: 'myFunction',
+            deep: true
+        }
     }
 })
 ```
