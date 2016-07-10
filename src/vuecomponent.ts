@@ -41,6 +41,7 @@ function createDecorator(name?:string, options?:vuejs.ComponentOption){
         if (!name) name = camelToSnake(target.toString().match(/\w+/g)[1]);
         if (!options) options = {};
         if (!options.props) options.props = {};
+        if (!options.watch) options.watch = {};
         if (options.data) {
             if (typeof options.data == 'function'){
                 var data_rtn = (<any>options).data();
@@ -49,9 +50,9 @@ function createDecorator(name?:string, options?:vuejs.ComponentOption){
         } else options.data = {};
         if (!options.methods) options.methods = {};
         if (options['style']) delete options['style'];
-        
+
         var newi = construct(original, {});
-        
+
         for(var key in newi){
             if (key.charAt(0) != '$' && key.charAt(0) != '_'){
                 if (typeof(newi[key]) == 'function'){
@@ -66,10 +67,27 @@ function createDecorator(name?:string, options?:vuejs.ComponentOption){
                 }
             } else if (key == "$$props"){
                 for(var prop in newi.$$props){
-                    options.props[prop] = newi.$$props[prop]
+                    options.props[prop] = newi.$$props[prop];
+                }
+            } else if (key == "$$watch"){
+                for(var watch in newi.$$watch){
+                    options.watch[watch] = newi.$$watch[watch];
                 }
             }
         }
+
+        for (key in options.props) {
+            if (options.data[key]) {
+                if (!options.props[key]) options.props[key] = {};
+                options.props[key].default = options.data[key];
+                delete options.data[key];
+            }
+        }
+        
+        for( var i in newi.$$methodsToRemove){
+            delete options.methods[newi.$$methodsToRemove[i]]
+        }
+
         var data = options.data;
         options.data = function() {return data}
         RegisteredComponents.registerComponent(name, Vue.component(name, options));

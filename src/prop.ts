@@ -1,13 +1,21 @@
-
-
 export function Prop(options: vuejs.PropOption) //With options
 export function Prop(target:Object, key:string)
 export function Prop(first:any, second?:string) {
-    if (!second){
-        return function(target: any, key: string) {
-            (target.$$props || (target.$$props = {}))[key] = first;
-        };
-    } else {
-        (first.$$props || (first.$$props = {}))[second] = null;
+    //Bare decorator (no params)
+    if (second) propDecorator(null)(first, second);
+    //Decorator with params
+    else return propDecorator(first);
+}
+
+function propDecorator(options?:any) {
+    return function(target:any, key:string) {
+        //create the temp props holder if non existane
+        if (!target.$$props) target.$$props = {};
+        
+        if(!options) options = null;
+
+        target.$$props[key] = options;
+        //remove it from the instance so it is not added to data
+        delete target[key];
     }
 }

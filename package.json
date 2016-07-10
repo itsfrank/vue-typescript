@@ -28,6 +28,7 @@
   "homepage": "https://github.com/itsFrank/vue-typescript#readme",
   "devDependencies": {
     "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
     "istanbul": "^0.4.4",
     "mocha": "^2.5.3",
     "mocha-clean": "^1.0.0",

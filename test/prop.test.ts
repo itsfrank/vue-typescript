@@ -8,21 +8,13 @@ import { VueComponent } from '../src/vuecomponent'
 
 describe('Prop', function(){
 
-    before(function(){
-        Vue.config.silent = true;
-    })
-
-    after(function(){
-        Vue.config.silent = false;
-    })
-
     @VueComponent({
-        el: 'eyy',
+        el: 'element',
         template: '<p>hello</p>'
     })
     class PropTest {
         @Prop
-        simple_prop:string;
+        simple_prop:string = 'default val';
 
         @Prop({
             default: 'default',
@@ -34,12 +26,13 @@ describe('Prop', function(){
 
     it('should have a simple prop', function(){
         var component = Utils.component('prop-test');
-        expect(component.$options.props).to.have.property('simple_prop').to.equal(null);
-    })
+        expect(component.$options.props).to.have.property('simple_prop').that.has.property('default').that.equals('default val');
+})
     
     it('should have an option prop', function(){
         var component = Utils.component('prop-test');
         expect(component.$options.props).to.have.property('option_prop').to.have.property('default').to.equal('default');
+        expect(component.$options.data()).to.not.haveOwnProperty('option_prop');
     })
 
 })

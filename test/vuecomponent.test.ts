@@ -8,14 +8,6 @@ import { VueComponent } from '../src/vuecomponent'
 
 describe('VueComponent', function(){
     
-    before(function(){
-        Vue.config.silent = true;
-    })
-
-    after(function(){
-        Vue.config.silent = false;
-    })
-
     @VueComponent
     class NoParams extends Vue {
     }

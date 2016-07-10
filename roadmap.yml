@@ -9,10 +9,7 @@ complete:
             options:
                 type: vuejs.PropOption
                 description: "Same object that would be used in standard Vue prop declaration. This object will be added to the props property in the options object provided by the @VueComponent decorator"
-        issues: 
-            -
-                description: "Not tested"
-                priority: "High"
+        issues: none
     VueComponent:
         type: class decorator
         description: missing
@@ -29,25 +26,26 @@ complete:
                 type: vuejs.ComponentOption
                 description: "Same object that would be used in standard Vue component declaration. This can be used to access all Vue features event if they arent yet implemented by vue-typescript. For properties defined both in the options object and in the class, the object property will be overwritten by the class property."
         issues: 
-            - 
-                description: "Props are added to data"
-                priority: high
-in_progress: none
-missing:
-    Method:
-        type: function decorator
-        description: "Apply to a functions to explicitly add it to the 'methods' object. By default all functions not defined by vue are assumed to be of this type. However, if you want to have a method that is named 'ready()' for example, apply the method decorator and it will be place in the 'methods' object"
-        priority: low
-    Hook:
-        type: function decorator
-        description: "Apply to a function that you wish to explicitley make a hook out of. This function will not be placed in the methods object, it will instead be a direct property of the object passed to the component constructor."
-        priority: low
-    Computed:
-        type: function decorator
-        description: "Functions to be added to the computed property."
-        priority: high
+            -
+                issue: "handle $$computed"
+                priority: low
     Watch:
         type: function decorator
         description: "Functions to be added to the watch property."
-        priority: low
+        usages:
+            - '@Watch(name:string)'
+            - '@Watch(name:string, options:vuejs.WatchOption)'
+        params:
+            name:
+                type:string
+                description: "Ether the name of the variable to watch, ot the name of the method to call on variable change"
+            options:
+                type:vuejs.WatchOption
+                description: "Same object you would use when defining a watched property in the watch object. Note that defining the handler in this object ios useless as it will be replace either by the function or the name of the method to call"
+in_progress: none
+missing:
+    Computed:
+        type: function decorator
+        description: "Functions to be added to the computed property."
+        priority: medium
 
