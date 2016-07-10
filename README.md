@@ -47,7 +47,7 @@ There are 2 ways to call it:
 
 &nbsp;&nbsp;&nbsp;&nbsp; options - the same object as the one you would use defining a prop  
 
-By default, the prop will behave equivalently to having &nbsp;`myProp: null` &nbsp; in the props object
+By default, the prop will behave equivalently to having &nbsp;`myProp: null` &nbsp; in the props object. However, if you give a value to a value to a variable decorated by prop (see example below), the default property of the prop object will be set to this value.
 
 ##### @Watch
 It can be applied to either a function or a variable, and for each application, there are 2 ways to call it:
@@ -75,10 +75,11 @@ import { VueComponent, Prop } from 'vue-typescript'
 @VueComponent
 class MyComponent {
     @Prop someProp:string;
+
     @Prop({
-        default: 'something'
+        type: String
     })
-    someDefaultProp:string; //if a value is assigned here it will be ignored
+    someDefaultProp:string = 'some default value'; 
 
     someVar:string = 'Hello!';
     
@@ -94,7 +95,8 @@ Vue.component('my-component', {
     props: {
         someProp:null,
         someDefaultProp : {
-            default: 'something'
+            type: String,
+            default: 'some default value'
         }
     },
     data: function(){
