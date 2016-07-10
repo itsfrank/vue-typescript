@@ -20,7 +20,7 @@ export function Watch(name:string, options?:WatchOption) {
     }
 }
 
-declare interface WatchOption {
+export declare interface WatchOption {
     handler?: (val: any, oldVal: any)=>void;
     deep?: boolean;
     immidiate?: boolean;
