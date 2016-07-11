@@ -7,11 +7,13 @@ Typescript decorators to make vue play nice with typescript
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)](https://opensource.org/licenses/MIT)
 [![GitHub stars](https://img.shields.io/github/stars/itsFrank/vue-typescript.svg?style=social&label=Star)](https://github.com/itsFrank/vue-typescript)
 
+
 ## Why do i need this?
 I built this mostly to remove the red squiggles on VSCode, but also to make Vue work seamlessly while still writing code that feels like typescript.
 
 While you can just declare all your components as 'any' and carry on, you lose all the fantastic features of typescript. However, i also wanted to make sure i still had access to the entirety of Vue's features; so vue-typescript is built in such a way that you can pick and chose how much of it you want to use and what you would rather stick to standard Vue syntax for.
 
+![screenshot](https://raw.githubusercontent.com/itsFrank/vue-typescript/master/screenshot.png "Logo Title Text 1")
 # Install
 This package has one single peer-dependancy: Vue (obviously) 
 
