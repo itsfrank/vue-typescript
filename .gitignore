@@ -8,3 +8,4 @@ coverage
 dist
 built
 *.tgz0.
+sample_app

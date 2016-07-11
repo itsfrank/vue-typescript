@@ -9,3 +9,4 @@ logs
 npm-debug.log*
 *.tgz
 tsconfig.json
+sample_app
