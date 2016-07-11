@@ -107,22 +107,12 @@ function createDecorator(name?:string, options?:vuejs.ComponentOption){
 
         var data = options.data;
         options.data = function() {return data}
-        RegisteredComponents.registerComponent(name, Vue.component(name, options));
+        Vue.component(name, options);
 
         // the new constructor behaviour
         var f:()=>void = function () {
-            return RegisteredComponents.getComponent(name);
+            return Vue.component(name);
         }
         return f;
     }
 }
-
-export class RegisteredComponents {
-    private static constructors = {};
-    public static registerComponent(name:string, constructor:any){
-        this.constructors[name] = constructor;
-    }
-    public static getComponent(name:string){
-        return this.constructors[name];
-    }
-};
