@@ -20,7 +20,7 @@ npm install --save vue-typescript
 ```
 For the best experience you will want to use typings and `typings install --save --global dt~vue` as some decorators use these typings for input parameters. If you dont want to use them, the typed vue object will be handled as `any`.
 
-# Current Features
+# Features
 - **@VueComponent** - A class decorator that registers the class as a vue component
 - **@Prop** - A variable decorator that adds a class' variables to the prop object instead of data
 - **@Watch** - A variable or function decorator that adds a property to the watch object mapping the desired function as handler
@@ -164,7 +164,7 @@ Vue.component('dope-tag', {
 Decorator on function:
 ```Typescript
 @VueComponent
-class MyClas {
+class MyClass {
     watchMe:string = 'look at meee!';
 
     @Watch('watchMe')
@@ -308,7 +308,10 @@ router.start(app, '#my-app');
 Calling something like `new MyComponent()` will actually not construct a new component, neither will it re-register it with vue. All components are registered at load time, calling new on the class is equivalent to getting a reference to the return of `Vue.component('my-component', {...})`, this function is only evaluated once, and the retuern is stored internally by vue-typescript. This is why in the vue-router example, we need to put `new` in front of our class.
 
 # Planned Features
-None for the moment, I will be building a couple complete sample apps before releasing verion 1.0.0 to both provide additional documentation as well as to attempt to discover any downfalls of the library. If you have any feature requests make sure to open an issue on the repo!
+- @on / @once - function decorators to register event handlers
+- @VueDirective - define custom directives as typescript classes
+- @VueFilter - define custom directives as typescript classes
+- @VueExtend - classs decorator to create a vue subclass 
 
 # Hacking It
 Although its never recomended to make changes inside node_modules, if you find a bug that prevents you from moving forward and need to fix it ASAP. Just cd to the module directory, run `typings install --production` (this will ommit the mocha, chai, and node typings). Then make your fix and run `npm run build`. Your IDE might throw a fit because there's no tsconfig, to fix that rename tsconfig.build.json to tsconfig.json (simply run `tsc` if you do that, the build command points tsc to the .build.json file). Depending on how tsc decides to resolve packages, you might also need to `npm install vue` locally in the vue-typescript folder as well.  
