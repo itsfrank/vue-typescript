@@ -22,6 +22,9 @@ npm install --save vue-typescript
 ```
 For the best experience you will want to use typings and `typings install --save --global dt~vue` as some decorators use these typings for input parameters. If you dont want to use them, the typed vue object will be handled as `any`.
 
+Alternatively, clone the [vue-typescript-seed](https://github.com/itsFrank/vue-typescript-seed) repo 
+
+
 # Features
 - **@VueComponent** - A class decorator that registers the class as a vue component
 - **@Prop** - A variable decorator that adds a class' variables to the prop object instead of data
