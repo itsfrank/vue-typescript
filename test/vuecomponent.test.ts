@@ -4,6 +4,7 @@ import { expect } from 'chai'
 import * as Utils from './_testutils'
 
 import { VueComponent } from '../src/vuecomponent'
+import { Prop } from '../src/prop'
 
 
 describe('VueComponent', function(){
@@ -50,6 +51,16 @@ describe('VueComponent', function(){
             return 10;
         }
     }
+
+    @VueComponent({
+    })
+    class Navbar extends Vue {
+
+        @Prop
+        inverted:boolean = false;
+
+
+    } 
 
     describe('Decorator Calls', function(){
         
@@ -121,6 +132,7 @@ describe('VueComponent', function(){
        });
 
     });
+
 
 
 });

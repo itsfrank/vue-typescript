@@ -94,7 +94,7 @@ function createDecorator(name?:string, options?:vuejs.ComponentOption){
         }
 
         for (key in options.props) {
-            if (options.data[key]) {
+            if (options.data[key] !=  null && options.data[key] !=  undefined) {
                 if (!options.props[key]) options.props[key] = {};
                 options.props[key].default = options.data[key];
                 delete options.data[key];
