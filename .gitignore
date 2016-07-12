@@ -8,3 +8,4 @@ coverage
 dist
 built
 vue-typescript*.tgz
+sample_app

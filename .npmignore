@@ -8,5 +8,6 @@ logs
 *.log
 npm-debug.log*
 vue-typescript*.tgz
+sample_app
 tsconfig.json
 sample_app
