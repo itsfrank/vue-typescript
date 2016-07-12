@@ -302,7 +302,7 @@ var router = new VueRouter();
 
 router.map({
   '/' : {
-    component: new HomeView()
+    component: HomeView
   }
 });
 
@@ -310,7 +310,7 @@ router.start(app, '#my-app');
 ```
 
 #### Note on using `new` with component classes
-Calling something like `new MyComponent()` will actually not construct a new component, neither will it re-register it with vue. All components are registered at load time, calling new on the class is equivalent to getting a reference to the return of `Vue.component('my-component', {...})`, this function is only evaluated once, and the retuern is stored internally by vue-typescript. This is why in the vue-router example, we need to put `new` in front of our class.
+Calling something like `new MyComponent()` will actually not construct a new MyComponent object, It will actually create a new vue component instance, with the properly formated data, methods, props, watch, etc.. objects. The class MyComponent is actually equivalent to the return of `Vue.component('my-component')`.
 
 # Planned Features
 - @on / @once - function decorators to register event handlers
