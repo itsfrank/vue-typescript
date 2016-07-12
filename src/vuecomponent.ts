@@ -110,9 +110,11 @@ function createDecorator(name?:string, options?:vuejs.ComponentOption){
         Vue.component(name, options);
 
         // the new constructor behaviour
-        var f:()=>void = function () {
-            return Vue.component(name);
-        }
-        return f;
+        // var f:()=>void = function () {
+        //     return Vue.component(name);
+        // }
+        // return f;
+        return Vue.component(name);
+        
     }
 }

@@ -114,8 +114,10 @@ describe('VueComponent', function(){
     describe("Class Constructor", function (){
 
        it('should return a vue object', function(){
-           var obj:any = new DataAndFunctions();
-           expect(obj).to.have.property('options').that.has.property('name').that.equals('data-and-functions');
+        //    var obj:any = new DataAndFunctions();
+        //    console.log(DataAndFunctions);
+        //    console.log(new DataAndFunctions());
+           expect(DataAndFunctions).to.have.property('options').that.has.property('name').that.equals('data-and-functions');
        });
 
     });
