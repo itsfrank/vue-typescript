@@ -4,6 +4,7 @@ import { expect } from 'chai'
 import * as Utils from './_testutils'
 
 import { VueComponent } from '../src/vuecomponent'
+import { Prop } from '../src/prop'
 
 
 describe('VueComponent', function(){
@@ -50,6 +51,16 @@ describe('VueComponent', function(){
             return 10;
         }
     }
+
+    @VueComponent({
+    })
+    class Navbar extends Vue {
+
+        @Prop
+        inverted:boolean = false;
+
+
+    } 
 
     describe('Decorator Calls', function(){
         
@@ -114,11 +125,14 @@ describe('VueComponent', function(){
     describe("Class Constructor", function (){
 
        it('should return a vue object', function(){
-           var obj:any = new DataAndFunctions();
-           expect(obj).to.have.property('options').that.has.property('name').that.equals('data-and-functions');
+        //    var obj:any = new DataAndFunctions();
+        //    console.log(DataAndFunctions);
+        //    console.log(new DataAndFunctions());
+           expect(DataAndFunctions).to.have.property('options').that.has.property('name').that.equals('data-and-functions');
        });
 
     });
+
 
 
 });

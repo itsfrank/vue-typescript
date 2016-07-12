@@ -94,7 +94,7 @@ function createDecorator(name?:string, options?:vuejs.ComponentOption){
         }
 
         for (key in options.props) {
-            if (options.data[key]) {
+            if (options.data[key] !=  null && options.data[key] !=  undefined) {
                 if (!options.props[key]) options.props[key] = {};
                 options.props[key].default = options.data[key];
                 delete options.data[key];
@@ -107,22 +107,14 @@ function createDecorator(name?:string, options?:vuejs.ComponentOption){
 
         var data = options.data;
         options.data = function() {return data}
-        RegisteredComponents.registerComponent(name, Vue.component(name, options));
+        Vue.component(name, options);
 
         // the new constructor behaviour
-        var f:()=>void = function () {
-            return RegisteredComponents.getComponent(name);
-        }
-        return f;
+        // var f:()=>void = function () {
+        //     return Vue.component(name);
+        // }
+        // return f;
+        return Vue.component(name);
+        
     }
 }
-
-export class RegisteredComponents {
-    private static constructors = {};
-    public static registerComponent(name:string, constructor:any){
-        this.constructors[name] = constructor;
-    }
-    public static getComponent(name:string){
-        return this.constructors[name];
-    }
-};
