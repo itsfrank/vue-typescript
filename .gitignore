@@ -7,4 +7,4 @@ node_modules
 coverage
 dist
 built
-*.tgz0.
+vue-typescript*.tgz
