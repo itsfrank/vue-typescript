@@ -7,6 +7,6 @@ roadmap.yml
 logs
 *.log
 npm-debug.log*
-*.tgz
+vue-typescript*.tgz
 tsconfig.json
 sample_app
