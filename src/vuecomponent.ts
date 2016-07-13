@@ -101,11 +101,7 @@ function createDecorator(name?:string, options?:vuejs.ComponentOption){
                 if (typeof default_val == 'object'){
                     var copy = clone(default_val, false);
                     default_val = function(){return clone(copy, false)}
-                } else if (typeof default_val == 'array'){
-                    var copy = clone(default_val, false);
-                    default_val = function(){return clone(copy, false)}
                 }
-                
                 options.props[key].default = default_val;
                 delete options.data[key];
             }

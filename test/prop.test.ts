@@ -18,6 +18,9 @@ describe('Prop', function(){
         @Prop
         object_prop:any = {im: 'an object'};
         
+        @Prop
+        arr_prop:any = [1,2,3];
+        
         @Prop({
             default: 'default',
             type: String,
@@ -42,6 +45,14 @@ describe('Prop', function(){
         var o1 = component.$options.props.object_prop.default;
         component = Utils.component('prop-test');
         var o2 = component.$options.props.object_prop.default;
+        expect(o1()).to.not.equal(o2());
+    })
+
+    it('should clone arrays', function(){
+        var component = Utils.component('prop-test');
+        var o1 = component.$options.props.arr_prop.default;
+        component = Utils.component('prop-test');
+        var o2 = component.$options.props.arr_prop.default;
         expect(o1()).to.not.equal(o2());
     })
 
