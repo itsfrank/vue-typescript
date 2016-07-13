@@ -52,7 +52,7 @@ There are 2 ways to call it:
 
 &nbsp;&nbsp;&nbsp;&nbsp; options - the same object as the one you would use defining a prop  
 
-By default, the prop will behave equivalently to having &nbsp;`myProp: null` &nbsp; in the props object. However, if you give a value to a value to a variable decorated by prop (see example below), the default property of the prop object will be set to this value.
+By default, the prop will behave equivalently to having &nbsp;`myProp: null` &nbsp; in the props object. However, if you give a value to a value to a variable decorated by prop (see example below), the default property of the prop object will be set to this value. If the value if of type array or object, don't worry about wrapping it in a function like you would do in standard vue, to provide maximum type checking and intelisense, vue-typescript clones and wraps it into a function for you.
 
 ##### @Watch
 It can be applied to either a function or a variable, and for each application, there are 2 ways to call it:
@@ -86,6 +86,8 @@ class MyComponent {
     })
     someDefaultProp:string = 'some default value'; 
 
+    @Prop someObjProp:{default:string} = {default: 'value'}; //vue-typescript makes sure to deep clone default values for array and object types
+
     someVar:string = 'Hello!';
     
     doStuff() {
@@ -102,6 +104,13 @@ Vue.component('my-component', {
         someDefaultProp : {
             type: String,
             default: 'some default value'
+        },
+        someObjProp: {
+            default: function(){
+                return {
+                    default: 'value'
+                }
+            }
         }
     },
     data: function(){

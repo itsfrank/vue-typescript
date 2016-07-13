@@ -1,4 +1,5 @@
 import * as Vue from 'vue';
+import * as clone from 'clone'
 
 import Config from './config'
 import { DeveloperUtils } from './utils'
@@ -94,9 +95,18 @@ function createDecorator(name?:string, options?:vuejs.ComponentOption){
         }
 
         for (key in options.props) {
-            if (options.data[key] !=  null && options.data[key] !=  undefined) {
+            var default_val:any = options.data[key];
+            if (default_val !=  null && default_val !=  undefined) {
                 if (!options.props[key]) options.props[key] = {};
-                options.props[key].default = options.data[key];
+                if (typeof default_val == 'object'){
+                    var copy = clone(default_val, false);
+                    default_val = function(){return clone(copy, false)}
+                } else if (typeof default_val == 'array'){
+                    var copy = clone(default_val, false);
+                    default_val = function(){return clone(copy, false)}
+                }
+                
+                options.props[key].default = default_val;
                 delete options.data[key];
             }
         }

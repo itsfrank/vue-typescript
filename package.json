@@ -39,5 +39,8 @@
   "peerDependencies": {
     "vue": "^1.0.26"
   },
-  "typings": "lib/index"
+  "typings": "lib/index",
+  "dependencies": {
+    "clone": "^1.0.2"
+  }
 }

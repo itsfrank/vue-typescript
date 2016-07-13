@@ -2,6 +2,7 @@
   "name": "vue-typescript",
   "dependencies": {},
   "globalDependencies": {
+    "clone": "registry:dt/clone#0.1.11+20160317120654",
     "vue": "registry:dt/vue#1.0.21+20160423143248"
   },
   "globalDevDependencies": {
