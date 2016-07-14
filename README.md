@@ -322,6 +322,7 @@ router.start(app, '#my-app');
 Calling something like `new MyComponent()` will actually not construct a new MyComponent object, It will actually create a new vue component instance, with the properly formated data, methods, props, watch, etc.. objects. The class MyComponent is actually equivalent to the return of `Vue.component('my-component')`.
 
 # Planned Features
+- scoped styles (in the decorator options)
 - @on / @once - function decorators to register event handlers
 - @VueDirective - define custom directives as typescript classes
 - @VueFilter - define custom directives as typescript classes
