@@ -9,20 +9,16 @@ export function VueComponent(element:string)
 export function VueComponent(options:vuejs.ComponentOption)
 export function VueComponent(element:string, options:vuejs.ComponentOption)
 export function VueComponent(first:any, options?:vuejs.ComponentOption) {
-    DeveloperUtils.decoratorStart();
     var type = typeof first;
         if (type == 'function') { //No param decorator, called at construction
             createDecorator(null, null)(first);
         } else if (type == 'string') { //name and options or name only
-            DeveloperUtils.decoratorStop();
             return createDecorator(first, options);
         } else if (type == 'object') { //options only
-            DeveloperUtils.decoratorStop();
             return createDecorator(null, first);
         } else {
             throw Error("First parameter of VueComponent must be a string or an object");
         }
-    DeveloperUtils.decoratorStop();
 }
 
 function camelToSnake(str:string){
@@ -32,6 +28,7 @@ function camelToSnake(str:string){
 };
 
 function createDecorator(name?:string, options?:vuejs.ComponentOption){
+    DeveloperUtils.decoratorStart();
     return function decorator(target:any){
         var className = camelToSnake(target.toString().match(/\w+/g)[1]);
         // save a reference to the original constructor
@@ -120,6 +117,7 @@ function createDecorator(name?:string, options?:vuejs.ComponentOption){
         //     return Vue.component(name);
         // }
         // return f;
+        DeveloperUtils.decoratorStop();
         return Vue.component(name);
         
     }
