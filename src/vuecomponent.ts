@@ -112,7 +112,7 @@ function createDecorator(name?:string, options?:vuejs.ComponentOption){
         }
 
         var data = options.data;
-        options.data = function() {return data}
+        options.data = function() {return clone(data, false)}
         Vue.component(name, options);
 
         // the new constructor behaviour

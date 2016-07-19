@@ -62,6 +62,11 @@ describe('VueComponent', function(){
 
     } 
 
+    @VueComponent
+    class CloneTest {
+        value:string = 'hello'
+    }
+
     describe('Decorator Calls', function(){
         
         it('should be called its snakecase classname on plain decorator', function(){
@@ -118,6 +123,16 @@ describe('VueComponent', function(){
             var component = Utils.component('data-and-functions');
             expect(component.$options).to.have.property('ready');
             expect(component.$options.ready[0]()).to.equal(10);     
+        })
+        
+        it('should not have linked data between instances', function(){
+            var component1 = Utils.component('clone-test');
+            var component2 = Utils.component('clone-test');
+            expect(component1.value).to.equal('hello');
+            expect(component2.value).to.equal('hello');
+            component1.value = 'goodbye';
+            expect(component1.value).to.equal('goodbye');
+            expect(component2.value).to.equal('hello');
         })
 
     });
