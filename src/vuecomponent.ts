@@ -92,16 +92,20 @@ function createDecorator(name?:string, options?:vuejs.ComponentOption){
         }
 
         for (key in options.props) {
-            var default_val:any = options.data[key];
-            if (default_val !=  null && default_val !=  undefined) {
-                if (!options.props[key]) options.props[key] = {};
-                if (typeof default_val == 'object'){
+            var default_val = options.data[key];
+            if (default_val == null || default_val == undefined) default_val = options.methods[key]
+            if (default_val != null && default_val != undefined) {
+                if (!options.props[key])
+                    options.props[key] = {};
+                if(typeof default_val == 'function') options.props[key].type = Function;
+                if (typeof default_val == 'object') {
                     var copy = clone(default_val, false);
-                    default_val = function(){return clone(copy, false)}
+                    default_val = function () { return clone(copy, false); };
                 }
                 options.props[key].default = default_val;
-                delete options.data[key];
             }
+            delete options.data[key];
+            delete options.methods[key];
         }
         
         for( var i in newi.$$methodsToRemove){

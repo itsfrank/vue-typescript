@@ -29,6 +29,13 @@ describe('Prop', function(){
         option_prop:string
     }
 
+    @VueComponent
+    class FunctionPropTest {
+        @Prop defaultFunc(){
+            return 10;
+        }
+    }
+
     it('should have a simple prop', function(){
         var component = new PropTest();
         expect(component.$options['props']).to.have.property('simple_prop').that.has.property('default').that.equals('default val');
@@ -54,6 +61,13 @@ describe('Prop', function(){
         component = Utils.component('prop-test');
         var o2 = component.$options.props.arr_prop.default;
         expect(o1()).to.not.equal(o2());
+    })
+
+    it('should remove functrions from methods', function(){
+        var component = Utils.component('function-prop-test');
+        expect(component.$options.props).to.have.property('defaultFunc');
+        expect(component.$options.props.defaultFunc.default()).to.equal(10);
+        expect(component.$options.methods).not.to.have.property('defaultFunc');
     })
 
 })

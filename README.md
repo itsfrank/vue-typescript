@@ -86,7 +86,11 @@ class MyComponent {
     })
     someDefaultProp:string = 'some default value'; 
 
-    @Prop someObjProp:{default:string} = {default: 'value'}; //vue-typescript makes sure to deep clone default values for array and object types
+    @Prop someObjProp:{some_default:string} = {some_default: 'value'}; //vue-typescript makes sure to deep clone default values for array and object types
+
+    @Prop someFuncProp(){ //defined functions decorated with prop are treated as the default value
+        console.log('logged from default function!');
+    }
 
     someVar:string = 'Hello!';
     
@@ -110,6 +114,12 @@ Vue.component('my-component', {
                 return {
                     default: 'value'
                 }
+            }
+        },
+        someFuncProp: {
+            type: Function //if it finds the default is a function, it automatically sets the type
+            default: function(){
+                console.log('logged from default function!');
             }
         }
     },
