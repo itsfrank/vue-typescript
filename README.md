@@ -265,7 +265,7 @@ class ComputedStuff {
     set fullname(name:string){
         var name_arr = name.split(' ');
         this.firstname = name_arr[0];
-        this.lastname = name_arr[0]; //you would probably want to add checks here to prevent errors
+        this.lastname = name_arr[1]; //you would probably want to add checks here to prevent errors
     }
 
     ready(){
@@ -290,7 +290,7 @@ Vue.component('computed-stuff', {
             set: function(name:string){
                 var name_arr = name.split(' ');
                 this.firstname = name_arr[0];
-                this.lastname = name_arr[0]; //you would probably want to add checks here to prevent errors
+                this.lastname = name_arr[1]; //you would probably want to add checks here to prevent errors
             }
         }
     },
